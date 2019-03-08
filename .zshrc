@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/bharat/.oh-my-zsh
+export ZSH=/Users/bharatsoni/.oh-my-zsh
 
 #Syntax Highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -121,11 +121,11 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias lc='colorls -lA --sd'
+# alias lc='colorls -lA --sd'
 
 # User colors for LS
 # source $(dirname $(gem which colorls))/tab_complete.sh
-echo $(gem which colorls) 
+# echo $(gem which colorls) 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # source $HOME/.zshenv
@@ -133,3 +133,23 @@ echo $(gem which colorls)
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 source  ~/powerlevel9k/powerlevel9k.zsh-theme
 
+# Command History for Auto-complete
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS # removes older command from the history if a duplicate is to be added.
+setopt HIST_IGNORE_DUPS     # does not enter immediate duplicates into the history.
+setopt HIST_IGNORE_SPACE    # removes commands from the history that begin with a space.
+setopt HIST_SAVE_NO_DUPS    # ommits older commands that duplicate newer ones when saving.
+setopt HIST_VERIFY          # doesn't execute the command directly upon history expansion.
+setopt SHARE_HISTORY
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/Users/bharatsoni/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall

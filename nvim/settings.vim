@@ -24,11 +24,11 @@ set whichwrap=b,s,<,>,[,]
 " }}}
 
 " Whitespace {{{
-let &showbreak = '↳ '
+let &showbreak = '√¢¬Ü¬≥ '
 
 set breakindent
 set linebreak
-set listchars=eol:$,tab:→\ ,space:·,trail:_,extends:»,precedes:«,nbsp:※
+set listchars=eol:$,tab:√¢¬Ü¬í\ ,space:√Ç¬∑,trail:_,extends:√Ç¬ª,precedes:√Ç¬´,nbsp:√¢¬Ä¬ª
 set smartindent
 " }}}
 
@@ -95,6 +95,7 @@ set nocursorcolumn
 set nocursorline
 set number
 set showmatch
+" set termguicolors
 if ($TERMINOLOGY != 1)
   set termguicolors
 endif
@@ -191,6 +192,8 @@ autocmd FileType markdown setl nolist textwidth=0
 autocmd FileType python setl foldmethod=indent
 autocmd FileType text setl textwidth=78
 autocmd FileType vim setl foldmethod=indent
+autocmd FileType javascript setl foldmethod=indent
+" autocmd FileType jsx setl foldmethod=indent
 
 " Set *.vue files as html
 " autocmd BufRead,BufNewFile *.vue set filetype=html
@@ -209,6 +212,7 @@ autocmd BufReadPost *
 " Colorscheme {{{
 " source ~/.config/nvim/fixcolors.vim
 
+" ***********************************************
 let g:seoul256_background = 235
 " let g:tender_airline = 1
 let g:wwdc16_term_italics = 1
@@ -220,13 +224,23 @@ let g:neodark#terminal_transparent = 1
 let g:quantum_black = 1
 let g:quantum_italics = 1
 let g:spacegray_italicize_comments = 1
-let g:airline_theme = 'one'
+let g:airline_theme = 'hybrid'
+" let g:airline_theme = 'cosmic_latte_dark'
 " let g:airline_theme = 'deep_space'
 let g:one_allow_italics = 1
+" ***********************************************
 
 set background=dark
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+let g:hybrid_transparent_background = 1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-colorscheme one
+set termguicolors
+
+colorscheme hybrid_material
+" colorscheme cosmic_latte
+" colorscheme allomancer
 " }}}
 
 " Plugin settings {{{
@@ -252,8 +266,8 @@ let g:startify_list_order = [
   \ ['Commands'],
   \ 'commands',
   \ ]
-let g:startify_bookmarks = ['~/Documents/redmart-repo/Partner-Portal-V2', '~/Documents/redmart-repo/partner-portal', '~/.config/nvim/', '~/.zshrc', '~/.config/alacritty/alacritty.yml']
-let g:startify_commands = [':PlugUpdate', ':PlugInstall']
+let g:startify_bookmarks = ['~/.config/nvim/', '~/.zshrc', '~/.config/alacritty/alacritty.yml']
+let g:startify_commands = [':PlugUpdate', ':PlugInstall', ':PlugClean']
 let g:startify_update_oldfiles = 1
 let g:startify_session_before_save = [
   \ 'echo "Cleaning up before saving..."',
@@ -338,6 +352,7 @@ let g:NERDSpaceDelims = 1
 let g:livedown_autorun = 1
 let g:livedown_port = 8999
 let g:livedown_open = 0
+let g:livedown_browser = "chrome"
 nnoremap <leader>md :LivedownToggle<CR>
 
 " tomtom/tcomment
@@ -413,18 +428,18 @@ let g:neomake_scss_enabled_makers = ['stylelint']
 let g:neomake_open_list = 2
 let g:neomake_list_height = 2
 let g:neomake_warning_sign = {
-  \ 'text': '',
+  \ 'text': '√Ø¬Å¬ô',
   \ 'texthl': 'WarningMsg',
   \ }
 let g:neomake_error_sign = {
-  \ 'text': '',
+  \ 'text': '√Ø¬Å¬±',
   \ 'texthl': 'ErrorMsg',
   \ }
 " autocmd! BufWritePost * Neomake
 
 " w0rp/ale
-let g:ale_sign_warning = ''
-let g:ale_sign_error = ''
+let g:ale_sign_warning = '√Ø¬Å¬ô'
+let g:ale_sign_error = '√Ø¬Å¬±'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
@@ -563,8 +578,8 @@ let g:limelight_priority = -1
 
 " airblade/vim-gitgutter
 let g:gitgutter_map_keys = 0
-let g:gitgutter_sign_modified = '±'
-let g:gitgutter_sign_modified_removed = '∓'
+let g:gitgutter_sign_modified = '√Ç¬±'
+let g:gitgutter_sign_modified_removed = '√¢¬à¬ì'
 
 " nathanaelkane/vim-indent-guides
 let g:indent_guides_start_level = 2
@@ -600,9 +615,9 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#hunks#hunk_symbols = ['+', '�', '-']
-" let g:airline#extensions#ale#warning_symbol = '⚠️'
-" let g:airline#extensions#ale#error_symbol = '❌'
+let g:airline#extensions#hunks#hunk_symbols = ['+', '¬±', '-']
+" let g:airline#extensions#ale#warning_symbol = '√¢¬ö¬†√Ø¬∏¬è'
+" let g:airline#extensions#ale#error_symbol = '√¢¬ù¬å'
 "
 " let g:airline_symbols = {}
 "
@@ -610,15 +625,15 @@ let g:airline#extensions#hunks#hunk_symbols = ['+', '�', '-']
 " let g:airline_left_alt_sep = ''
 " let g:airline_right_sep = ''
 " let g:airline_right_alt_sep = ''
-" let g:airline_symbols.crypt = '🔑'
-" let g:airline_symbols.readonly = '⛔'
-" let g:airline_symbols.linenr = '📄'
-" let g:airline_symbols.maxlinenr = ''
-" let g:airline_symbols.branch = '🔀'
-" let g:airline_symbols.paste = '📋'
-" let g:airline_symbols.spell = '🔤'
-" let g:airline_symbols.notexists = '❎'
-" let g:airline_symbols.whitespace = '⚪'
+" let g:airline_symbols.crypt = '√∞¬ü¬î¬ë'
+" let g:airline_symbols.readonly = '√¢¬õ¬î'
+" let g:airline_symbols.linenr = '√∞¬ü¬ì¬Ñ'
+" let g:airline_symbols.maxlinenr = '√Ø¬É¬â'
+" let g:airline_symbols.branch = '√∞¬ü¬î¬Ä'
+" let g:airline_symbols.paste = '√∞¬ü¬ì¬ã'
+" let g:airline_symbols.spell = '√∞¬ü¬î¬§'
+" let g:airline_symbols.notexists = '√¢¬ù¬é'
+" let g:airline_symbols.whitespace = '√¢¬ö¬™'
 "
 let g:airline_section_c = '%{FilenameOrTerm()}'
 
@@ -641,8 +656,9 @@ let g:airline_mode_map = {
   \ }
 
 " yggdroot/indentline
-let g:indentLine_enabled = 0
-let g:indentLine_char = '┊'
+let g:indentLine_enabled = 1
+let g:indentLine_char_list = ['|', '¬¶']
+let g:indentLine_color_gui = '#7A7A7A'
 
 nnoremap <leader>il :IndentLinesToggle<CR>
 
@@ -670,7 +686,8 @@ let g:markdown_enable_input_abbreviations = 0
 " let g:jsx_ext_required = 0
 
 " MaxMEllon/vim-jsx-pretty
-let g:vim_jsx_pretty_colorful_config = 1
+" let g:vim_jsx_pretty_template_tags = ['html', 'raw', 'jsx', 'javascript']
+" let g:vim_jsx_pretty_colorful_config = 1
 
 "othree/html5.vim
 
@@ -689,9 +706,12 @@ let g:javascript_plugin_ngdoc = 1
 
 " }}}
 
+" Galooshi/vim-import-js
+" nnoremap <silent> <leader>gs :Gstatus<CR>
+
 
 " Don't copy deleted value:
-vnoremap r “_dP
+vnoremap r √¢¬Ä¬ú_dP
 
 " upgrading to python3
 " source: https://ricostacruz.com/til/neovim-with-python-on-osx

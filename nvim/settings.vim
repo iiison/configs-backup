@@ -1,11 +1,14 @@
 " vim: fdm=marker fmr={{{,}}}
 
-set encoding=utf8
-" set guifont=Fira\ Code:h11
-" set guifont=icomoon:h11
-" set guifont=Droid\ Sans\ Mono\ for\ Powerline:h11
-" set guifont=Droid\ Sans\ Mono\ Nerd\ Font\ Complete\ Mono:h11
-set guifont=Sauce_Code_Pro_Light_Nerd_Font_Complete_Mono_Light:h12
+" Vim Doc - 
+" http://vimdoc.sourceforge.net/htmldoc/options.html
+" https://stackoverflow.com/questions/962064/unable-to-understand-a-line-in-vimrc
+" https://github.com/Gonzih/vim-keymap/blob/master/keymap.md
+
+set encoding=UTF-8
+" set guifont=Sauce_Code_Pro_Light_Nerd_Font_Complete_Mono_Light:h12
+" set guifont=Source\ Code\ Pro\ ExtraLight:h12
+set guifont=SauceCodePro\ Nerd\ Font\ ExtraLight:h12
 
 " Basic editor prefs {{{
 set clipboard+=unnamedplus
@@ -24,12 +27,13 @@ set whichwrap=b,s,<,>,[,]
 " }}}
 
 " Whitespace {{{
-let &showbreak = '√¢¬Ü¬≥ '
+let &showbreak = 'â†³ '
 
 set breakindent
 set linebreak
-set listchars=eol:$,tab:√¢¬Ü¬í\ ,space:√Ç¬∑,trail:_,extends:√Ç¬ª,precedes:√Ç¬´,nbsp:√¢¬Ä¬ª
+"set listchars=eol:$,tab:â†’\ ,space:Â·,trail:_,extends:Â»,precedes:Â«,nbsp:â€»
 set smartindent
+" set autoindent
 " }}}
 
 " Spaces, no tabs {{{
@@ -47,7 +51,9 @@ set smartcase
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
 endif
+   
 " }}}
+
 
 " Persistent undo {{{
 if exists('+undofile')
@@ -81,6 +87,7 @@ let mapleader=","
 let g:mapleader=","
 " }}}
 
+
 " Visual config {{{
 if has("nvim")
   set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
@@ -95,7 +102,6 @@ set nocursorcolumn
 set nocursorline
 set number
 set showmatch
-" set termguicolors
 if ($TERMINOLOGY != 1)
   set termguicolors
 endif
@@ -111,13 +117,11 @@ set foldlevelstart=99
 " General keymaps and custom commands {{{
 command! CDhere call ChangeCurrDir()
 
+
 " Close window or delete buffer
 "noremap <silent> <leader>q :call CloseWindowOrKillBuffer()<CR>
 noremap <silent> <leader>q <C-W>c
 " noremap <silent> <leader>dd :bdelete<CR>
-
-" Backspace in visual mode deletes selection
-vnoremap <BS> d
 
 " Duplicate current line
 nnoremap <M-d> YPj$
@@ -131,8 +135,8 @@ vnoremap <leader>s :sort i<CR>
 vnoremap <leader>S :sort<CR>
 
 " Buffers - previous/next: S-F12, F12
-nnoremap <silent> <leader>{ :bp<CR>
-nnoremap <silent> <leader>} :bn<CR>
+nnoremap <silent> <leader>[ :bp<CR>
+nnoremap <silent> <leader>] :bn<CR>
 
 " Reselect block after indenting
 vnoremap < <gv
@@ -166,13 +170,13 @@ if has("nvim")
 endif
 
 " Show syntax highlighting group for word under cursor
-function! <SID>SynStack()
-    if !exists('*synstack')
-        return
-    endif
-    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunction
-nnoremap <M-u> :call <SID>SynStack()<CR>
+" function! <SID>SynStack()
+"     if !exists('*synstack')
+"         return
+"     endif
+"     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+" endfunction
+" nnoremap <M-u> :call <SID>SynStack()<CR>
 
 " }}}
 
@@ -188,12 +192,11 @@ autocmd InsertEnter * set cursorline
 autocmd InsertLeave *  set nocursorline
 
 autocmd FileType coffee setl foldmethod=indent
+autocmd FileType javascript setl foldmethod=indent
 autocmd FileType markdown setl nolist textwidth=0
 autocmd FileType python setl foldmethod=indent
 autocmd FileType text setl textwidth=78
 autocmd FileType vim setl foldmethod=indent
-autocmd FileType javascript setl foldmethod=indent
-" autocmd FileType jsx setl foldmethod=indent
 
 " Set *.vue files as html
 " autocmd BufRead,BufNewFile *.vue set filetype=html
@@ -209,12 +212,13 @@ autocmd BufReadPost *
 
 " }}}
 
+
 " Colorscheme {{{
 " source ~/.config/nvim/fixcolors.vim
 
 " ***********************************************
 let g:seoul256_background = 235
-" let g:tender_airline = 1
+let g:tender_airline = 1
 let g:wwdc16_term_italics = 1
 let g:wwdc16_term_trans_bg = 1
 let g:gruvbox_italic = 1
@@ -226,6 +230,7 @@ let g:quantum_italics = 1
 let g:spacegray_italicize_comments = 1
 let g:airline_theme = 'hybrid'
 " let g:airline_theme = 'cosmic_latte_dark'
+" let g:airline_theme = 'distinguished'
 " let g:airline_theme = 'deep_space'
 let g:one_allow_italics = 1
 " ***********************************************
@@ -238,37 +243,117 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set termguicolors
 
-colorscheme hybrid_material
+" colorscheme hybrid_material
+" colorscheme dracula
 " colorscheme cosmic_latte
-" colorscheme allomancer
 " }}}
 
 " Plugin settings {{{
 
 " Utilities {{{
 
-" MarcWeber/vim-addon-local-vimrc
+" MarcWeber/vim-addon-local-vimr
 let g:local_vimrc = {'names': ['.vimlocal'], 'hash_fun': 'LVRHashOfFile'}
+
 
 " editorconfig/editorconfig-vim
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*', 'term://.*']
 let g:EditorConfig_exec_path = '/usr/bin/editorconfig'
 
 " mhinz/startify
+" https://github.com/mhinz/vim-startify/blob/master/doc/startify.txt
+" ASCII Source - https://www.text-image.com/convert/ascii.html
+let g:avengers_ascii = [
+\ "           o                                                         ",
+\ "                                                                     ",
+\ "              o                                                      ",
+\ "                                                                     ",
+\ "                  o                                                  ",
+\ "                                                                     ",
+\ "                       o                                             ",
+\ "                                     `/////:                         ",
+\ "                                     `dMMMMMd                        ",
+\ "                                    `dMMMMMMd                        ",
+\ "                             .:/+ooodMMMMMMMd                        ",
+\ "                         :ohNMMMMMMMMMMMMMMMd                        ",
+\ "                      -sNMMMNho+:/NMMMNMMMMMMNs-                     ",
+\ "                    -hMMMdo-    `dMMMN+NMMMMMMMMh-                   ",
+\ "                   oNMMh:      `dMMMM+ NMMMMd:hMMNo                  ",
+\ "                 `hMMN/       `dMMMMo  NMMMMd  /NMMh`                ",
+\ "                 hMMN-       `dMMMMs   NMMMMd   -NMMh                ",
+\ "                /MMM:       `dMMMMy    NMMMMd    :MMM/               ",
+\ "                dMMd       `dMMMMh     :yNMMd     dMMd               ",
+\ "                NMMo      `mMMMMd`     No-yNd     oMMN               ",
+\ "                NMMs     .mMMMMMmddddddMMNo-o     sMMN               ",
+\ "                hMMd    .mMMMMMMMMMMMMMMMMMN/     dMMh               ",
+\ "                :MMM+  .mMMMMMMMMMMMMMMMMMd::    +MMM:               ",
+\ "                 sMMm .mMMMMM+`````````Nd:+md   :NMMs                ",
+\ "                  sm..mMMMMMo          :+mMMd `oNMMs                 ",
+\ "                   `.mMMMMMy           -/////+mMMN/                  ",
+\ "                   .mMMMMMy `            `/yNMMNs`                   ",
+\ "                  .mMMMMMh`oMmhso+//+oshmMMMNd+`                     ",
+\ "                 .mMMMMMd``sdNMMMMMMMMMMNds/`                        ",
+\ "                 -//////`     `-:://::-`                             ",
+\ "",
+\ "",
+\]
+
+let g:ironMan_ascii = [
+  \ "   o",
+  \ "",
+  \ "     o",
+  \ "",
+  \ "       o",
+  \ "         ",
+  \ "               ██████████████████       ",
+  \ "            ████▓▓▓█▓▓▓▓▓▓▓▓█▓▓▓███     ",
+  \ "           ██▓▓█▓▓▓█▓▓▓▓▓▓▓▓█▓▓▓█▓▓█    ",
+  \ "          ██████████▓▓▓▓▓▓▓▓██████████  ",
+  \ "          ██──────███████████───────██  ",
+  \ "         ███───────██▓▓▓▓▓▓█────────███ ",
+  \ "         ████───────█▓▓▓▓▓▓█───────████ ",
+  \ "         █▓██───────█▓▓▓▓▓▓█───────██▓█ ",
+  \ "         ██▓█───────█▓▓▓▓▓▓█───────█▓██ ",
+  \ "        ████▓█──────█▓▓▓▓▓▓█──────█▓████",
+  \ "        █▓██▓█──────▀██████▀──────█▓██▓█",
+  \ "        █▓██▓█────────────────────█▓██▓█",
+  \ "        █▓████────────────────────████▓█",
+  \ "        █▓██▀──────────────────────▀██▓█",
+  \ "        █▓██──█▀▀▀▀▄▄──────▄▄▀▀▀▀█──██▓█",
+  \ "        ███───█─────▀██▄▄██▀─────█───███",
+  \ "         ██───▀█▄▄▄▄█▀────▀█▄▄▄▄█▀───██ ",
+  \ "         ███────────────────────────███ ",
+  \ "          █▓█──────────────────────█▓█  ",
+  \ "          █▓▓█────────────────────█▓▓█  ",
+  \ "          █▓▓▓█──────────────────█▓▓▓█  ",
+  \ "          █▓▓▓█──────────────────█▓▓▓█  ",
+  \ "          █▓▓▓▓█▄──────────────▄█▓▓▓▓█  ",
+  \ "           █▓▓█▀█──▄▀▀▀▀▀▀▀▀▄──█▀█▓▓█   ",
+  \ "            █▓█─▀▄▄▀────────▀▄▄▀─█▓█    ",
+  \ "             █▓█─────▄▄▄▄▄▄─────█▓█     ",
+  \ "              █▓█▄▄▄██▓▓▓▓██▄▄▄█▓█      ",
+  \ "               █▓▓▓█▓▓▓▓▓▓▓▓█▓▓▓█       ",
+  \ "                ████████████████        ",
+  \ "                                        ",
+  \]
+
+"let g:startify_custom_header = map(g:startify_ascii, '"     ".v:val')  + startify#fortune#boxed()
+"let g:startify_custom_header = map(g:startify_ascii + startify#fortune#boxed(), '"   ".v:val')
+let g:startify_custom_header = map(startify#fortune#boxed() + g:avengers_ascii, '"   ".v:val')
 let g:startify_session_dir = '~/.config/nvim/.cache/startify'
 let g:startify_list_order = [
-  \ ['Recently opened files'],
-  \ 'files',
   \ ['Sessions'],
   \ 'sessions',
-  \ ['Bookmarks'],
-  \ 'bookmarks',
+  \ ['Recently opened files'],
+  \ 'files',
   \ ['Commands'],
   \ 'commands',
+  \ ['Bookmarks'],
+  \ 'bookmarks',
   \ ]
-let g:startify_bookmarks = ['~/.config/nvim/', '~/.zshrc', '~/.config/alacritty/alacritty.yml']
-let g:startify_commands = [':PlugUpdate', ':PlugInstall', ':PlugClean']
-let g:startify_update_oldfiles = 1
+let g:startify_bookmarks =[{ 'man': '~/Documents/untangle/manufacturing-project-v1' }, { 'nv': '~/.config/nvim/' }, { 'z': '~/.zshrc' }]
+" let g:startify_custom_indices = ['M', 'N', 'Z']
+let g:startify_commands = [{ 'pu': ':PlugUpdate' }, { 'pi': ':PlugInstall' }, { 'pc': ':PlugClean' }]
 let g:startify_session_before_save = [
   \ 'echo "Cleaning up before saving..."',
   \ 'silent! NERDTreeTabsClose'
@@ -282,6 +367,22 @@ let g:startify_session_sort = 1
 let g:startify_custom_indices = map(range(1,100), 'string(v:val)')
 " let g:startify_custom_header = []
 let g:startify_show_sessions = 1
+let g:startify_padding_left = 5
+let g:startify_relative_path = 1
+let g:startify_fortune_use_unicode = 1
+let g:startify_change_to_vcs_root = 1
+
+let g:startify_update_oldfiles = 1
+let g:startify_use_env = 1
+
+hi! link StartifyHeader Normal
+hi! link StartifyFile Directory
+hi! link StartifyPath LineNr
+hi! link StartifySlash StartifyPath
+hi! link StartifyBracket StartifyPath
+hi! link StartifyNumber Title
+
+autocmd User Startified setlocal cursorline
 " nnoremap <M-F1> :Startify<CR>
 
 " mhinz/vim-grepper
@@ -304,49 +405,50 @@ nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gx :Gremove<CR>
 nnoremap <silent> <leader>ga :Git add -- .<CR>
 autocmd BufReadPost fugitive://* set bufhidden=delete
-
 " }}}
+
 
 " Editing {{{
 
-" Raimondi/delimitMate
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
-autocmd FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:}"
-
 " heavenshell/vim-jsdoc
+let g:jsdoc_allow_input_prompt = 1
 let g:jsdoc_enable_es6 = 1
-nnoremap <silent> <C-CR> :JsDoc<CR>
+nnoremap <silent> <leader>J :JsDoc<CR>
 
 " jiangmiao/auto-pairs
-let g:AutoPairsShortcutToggle = ''
-
-" junegunn/goyo.vim
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 " junegunn/vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
-
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" mattn/emmet-vim
-" let g:user_emmet_leader_key = '<Tab>'
-let g:user_emmet_mode='a'
-let g:user_emmet_install_global = 1
-let g:emmet_html5 = 1
-" let g:user_emmet_expandabbr_key = '<C-E>'
-" let g:user_emmet_expandword_key = '<C-S-E>'
-
-" let g:user_emmet_leader_key = '<Tab>'
-" let g:user_emmet_settings = {
-"       \ 'javascript.jsx' : {
-"       \ 'extends' : 'jsx',
-"       \ },
-"       \}
-
 " scrooloose/nerdcommenter
-let g:NERDSpaceDelims = 1
+" let g:NERDSpaceDelims = 1
+
+" tomtom/tcomment
+" let g:tcomment_maps = 0
+" let g:tcomment#filetype#guess = 0
+
+" nmap <leader>cc :TComment<CR>
+" nmap <leader>cm :TCommentBlock<CR>
+" nmap <leader>ci :TCommentInline<CR>
+" nmap <leader>cr :TCommentRight<CR>
+
+" vmap <leader>cc :TComment<CR>
+" vmap <leader>cm :TCommentBlock<CR>
+" vmap <leader>ci :TCommentInline<CR>
+" vmap <leader>cr :TCommentRight<CR>
+
+" tpope/vim-commentary
+nmap <leader>cc :Commentary<CR>
+nmap <leader>cm :Commentary<CR>
+
+vmap <leader>cc :Commentary<CR>
+vmap <leader>cm :Commentary<CR>
+
 
 " shime/vim-livedown
 let g:livedown_autorun = 1
@@ -354,48 +456,10 @@ let g:livedown_port = 8999
 let g:livedown_open = 0
 let g:livedown_browser = "chrome"
 nnoremap <leader>md :LivedownToggle<CR>
-
-" tomtom/tcomment
-let g:tcomment_maps = 0
-let g:tcomment#filetype#guess = 0
-
-nmap <leader>cc :TComment<CR>
-nmap <leader>cm :TCommentBlock<CR>
-nmap <leader>ci :TCommentInline<CR>
-nmap <leader>cr :TCommentRight<CR>
-
-vmap <leader>cc :TComment<CR>
-vmap <leader>cm :TCommentBlock<CR>
-vmap <leader>ci :TCommentInline<CR>
-vmap <leader>cr :TCommentRight<CR>
-
-" tpope/vim-commentary
-" nmap <leader>cc gcc
-" nmap <leader>ca gcgc
-" vmap <leader>cc gc
-
-" tpope/vim-repeat
-
-" tpope/vim-speeddating
-
-" tpope/vim-surround
-
-" tpope/vim-unimpaired
-nmap <M-S-Up> [e
-nmap <M-S-K> [e
-nmap <M-S-Down> ]e
-nmap <M-S-J> ]e
-vmap <M-S-Up> [egv
-vmap <M-S-K> [egv
-vmap <M-S-Down> ]egv
-vmap <M-S-J> ]egv
-
 " }}}
 
+
 " Autocomplete {{{
-
-" Shougo/context_filetype.vim
-
 " Shougo/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1
@@ -417,31 +481,23 @@ call deoplete#custom#source('_', 'matchers', ['matcher_length', 'matcher_full_fu
 let g:tern#command = ['tern']
 let g:tern#arguments = ['--persistent']
 
+let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#enable_camel_case = 1
+let g:deoplete#enable_refresh_always = 1
+let g:deoplete#max_abbr_width = 0
+let g:deoplete#max_menu_width = 0
+let g:deoplete#omni#input_patterns = get(g:, 'deoplete#omni#input_patterns',{})
+let g:tern_request_timeout = 1
+let g:tern_request_timeout = 6000
 " }}}
 
 " Linting {{{
-
-" neomake/neomake
-let g:neomake_html_enabled_makers = []
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_scss_enabled_makers = ['stylelint']
-let g:neomake_open_list = 2
-let g:neomake_list_height = 2
-let g:neomake_warning_sign = {
-  \ 'text': '√Ø¬Å¬ô',
-  \ 'texthl': 'WarningMsg',
-  \ }
-let g:neomake_error_sign = {
-  \ 'text': '√Ø¬Å¬±',
-  \ 'texthl': 'ErrorMsg',
-  \ }
-" autocmd! BufWritePost * Neomake
-
-" w0rp/ale
-let g:ale_sign_warning = '√Ø¬Å¬ô'
-let g:ale_sign_error = '√Ø¬Å¬±'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_error_str = 'E'
+" " w0rp/ale
+let g:ale_sign_warning = ' '
+let g:ale_sign_error = ' '
+let g:ale_echo_msg_warning_str = ' '
+let g:ale_echo_msg_error_str = ' '
 let g:ale_echo_msg_format = '[%severity%][%linter%] %s'
 " let g:ale_set_quickfix = 1
 " let g:ale_open_list = 0
@@ -452,17 +508,15 @@ let g:ale_linters = {
   \ 'sass': ['stylelint'],
   \ 'scss': ['stylelint']
   \ }
-
 " }}}
 
 " Navigation {{{
-
-" junegunn/fzf
 
 " junegunn/fzf.vim
 let $FZF_DEFAULT_COMMAND = 'ag -l --hidden --ignore .git -g ""'
 nmap <M-p> :FZF<CR>
 nmap <M-P> :Buffers<CR>
+
 
 " scrooloose/nerdtree
 let NERDTreeBookmarksFile = '~/.config/nvim/.cache/NERDTreeBookmarks'
@@ -525,61 +579,21 @@ call esearch#cmdline#map('<C-o><C-r>', 'toggle-regex')
 call esearch#cmdline#map('<C-o><C-s>', 'toggle-case')
 call esearch#cmdline#map('<C-o><C-w>', 'toggle-word')
 call esearch#cmdline#map('<C-o><C-h>', 'cmdline-help')
-
-" Colors
-hi ESearchMatch ctermfg=black ctermbg=white guifg=#000000 guibg=#E6E6FA
-
-
-
-" junegunn/limelight.vim
-" Color name (:help cterm-colors) or ANSI code
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-
-" Color name (:help gui-colors) or RGB color
-let g:limelight_conceal_guifg = 'DarkGray'
-let g:limelight_conceal_guifg = '#777777'
-
-" Default: 0.5
-let g:limelight_default_coefficient = 0.8
-
-" Number of preceding/following paragraphs to include (default: 0)
-let g:limelight_paragraph_span = 1
-
-" Beginning/end of paragraph
-"   When there's no empty line between the paragraphs
-"   and each paragraph starts with indentation
-let g:limelight_bop = '^\s'
-let g:limelight_eop = '\ze\n^\s'
-
-" Highlighting priority (default: 10)
-"   Set it to -1 not to overrule hlsearch
-let g:limelight_priority = -1
-
-" Goyo Integration
-" autocmd! User GoyoEnter Limelight
-" autocmd! User GoyoLeave Limelight!
-
-" vim-ctrlspace/vim-ctrlspace
-" let g:CtrlSpaceStatuslineFunction = "airline#extensions#ctrlspace#statusline()"
-
-" if executable('ag')
-"   let g:CtrlSpaceGlobCommand = 'ag -l --hidden --no-color -g ""'
-" endif
-
-" nnoremap <silent><C-Space> :CtrlSpace<CR>
-" nnoremap <silent><C-P> :CtrlSpace O<CR>
-
-" wesQ3/vim-windowswap
-
 " }}}
 
 " Information {{{
 
 " airblade/vim-gitgutter
-let g:gitgutter_map_keys = 0
-let g:gitgutter_sign_modified = '√Ç¬±'
-let g:gitgutter_sign_modified_removed = '√¢¬à¬ì'
+" let g:gitgutter_map_keys = 0
+let g:gitgutter_signs = 1
+let g:gitgutter_sign_added = ' '
+let g:gitgutter_sign_modified = ''
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_removed_first_line = 'ﮥ' 
+let g:gitgutter_sign_modified_removed = ''
+
+" let g:gitgutter_sign_modified = 'Â±'
+" let g:gitgutter_sign_modified_removed = 'â'
 
 " nathanaelkane/vim-indent-guides
 let g:indent_guides_start_level = 2
@@ -593,7 +607,19 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffers_label = 'bufs'
 let g:airline#extensions#tabline#tabs_label = 'tabs'
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 2
+" let g:airline#extensions#tabline#buffer_idx_format = {
+  " \ '0': '0 ',
+  " \ '1': '1 ',
+  " \ '2': '2 ',
+  " \ '3': '3 ',
+  " \ '4': '4 ',
+  " \ '5': '5 ',
+  " \ '6': '6 ',
+  " \ '7': '7 ',
+  " \ '8': '8 ',
+  " \ '9': '9 '
+" \}
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -605,7 +631,10 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
-let g:airline#extensions#tabline#buffer_nr_show = 0
+nmap <leader>b <Plug>XTablineSelectBuffer
+nmap <leader>tr <Plug>XTablineReopen
+
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#buffer_nr_format = '%s?'
 let g:airline#extensions#tabline#fnamecollapse = 1
 let g:airline#extensions#tabline#left_sep = ''
@@ -615,26 +644,31 @@ let g:airline#extensions#tabline#right_alt_sep = ''
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#hunks#hunk_symbols = ['+', '¬±', '-']
-" let g:airline#extensions#ale#warning_symbol = '√¢¬ö¬†√Ø¬∏¬è'
-" let g:airline#extensions#ale#error_symbol = '√¢¬ù¬å'
+let g:airline#extensions#hunks#hunk_symbols = ['+', '±', '-']
+
+" let g:airline#extensions#tabline#show_tab_nr = 1
+" let g:airline#extensions#tabline#tab_nr_type = 1
+
+" let g:airline#extensions#ale#warning_symbol = 'â ï¸'
+" let g:airline#extensions#ale#error_symbol = 'â'
 "
 " let g:airline_symbols = {}
-"
+
+" powerline symbols
 " let g:airline_left_sep = ''
 " let g:airline_left_alt_sep = ''
 " let g:airline_right_sep = ''
 " let g:airline_right_alt_sep = ''
-" let g:airline_symbols.crypt = '√∞¬ü¬î¬ë'
-" let g:airline_symbols.readonly = '√¢¬õ¬î'
-" let g:airline_symbols.linenr = '√∞¬ü¬ì¬Ñ'
-" let g:airline_symbols.maxlinenr = '√Ø¬É¬â'
-" let g:airline_symbols.branch = '√∞¬ü¬î¬Ä'
-" let g:airline_symbols.paste = '√∞¬ü¬ì¬ã'
-" let g:airline_symbols.spell = '√∞¬ü¬î¬§'
-" let g:airline_symbols.notexists = '√¢¬ù¬é'
-" let g:airline_symbols.whitespace = '√¢¬ö¬™'
-"
+" let g:airline_symbols.crypt = ''
+" let g:airline_symbols.readonly = '﫸'
+" let g:airline_symbols.linenr = ''
+" let g:airline_symbols.maxlinenr = ''
+" let g:airline_symbols.branch = '練'
+" let g:airline_symbols.paste = '𧻓'
+" let g:airline_symbols.spell = ''
+" let g:airline_symbols.notexists = ''
+" let g:airline_symbols.whitespace = '﬍'
+
 let g:airline_section_c = '%{FilenameOrTerm()}'
 
 function! FilenameOrTerm()
@@ -657,64 +691,38 @@ let g:airline_mode_map = {
 
 " yggdroot/indentline
 let g:indentLine_enabled = 1
-let g:indentLine_char_list = ['|', '¬¶']
+let g:indentLine_char_list = ['|', '¦']
 let g:indentLine_color_gui = '#7A7A7A'
 
 nnoremap <leader>il :IndentLinesToggle<CR>
-
 " }}}
 
 " Syntax {{{
-
-" ap/vim-css-color
-
-" digitaltoad/vim-jade
-
-" docunext/closetag.vim
 
 " gabrielelana/vim-markdown
 let g:markdown_enable_spell_checking = 0
 let g:markdown_enable_input_abbreviations = 0
 
-" gregsexton/MatchTag
-
-" jelera/vim-javascript-syntax
-
-" kchmck/vim-coffee-script
-
-" mxw/vim-jsx
-" let g:jsx_ext_required = 0
-
-" MaxMEllon/vim-jsx-pretty
-" let g:vim_jsx_pretty_template_tags = ['html', 'raw', 'jsx', 'javascript']
-" let g:vim_jsx_pretty_colorful_config = 1
-
-"othree/html5.vim
-
-"othree/javascript-libraries-syntax
-" let g:used_javascript_libs = 'jquery,underscore,angularjs,angularui,angularuirouter,jasmine,ramda'
-
-" othree/yajs.vim
-
 " pangloss/vim-javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
-
-" posva/vim-vue
-
 " }}}
 
+" MaxMEllon/vim-jsx-pretty
+" let g:vim_jsx_pretty_template_tags = ['html', 'jsx', 'js']
+" let g:vim_jsx_pretty_colorful_config = 1
 " }}}
 
-" Galooshi/vim-import-js
-" nnoremap <silent> <leader>gs :Gstatus<CR>
+" ColorSchemes {{{
+" colorscheme hybrid_material
+" colorscheme dracula
 
+let g:molokai_original = 0
+colorscheme molokai
 
-" Don't copy deleted value:
-vnoremap r √¢¬Ä¬ú_dP
+" syntax enable
+" set background=dark
+" colorscheme solarized
 
-" upgrading to python3
-" source: https://ricostacruz.com/til/neovim-with-python-on-osx
-let g:python2_host_prog = '/usr/local/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
-
+" }}}
+" }}}

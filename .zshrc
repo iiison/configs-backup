@@ -1,11 +1,13 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+#Anaconda Path:
+PATH="/Users/bharatsoni/opt/anaconda3/bin:${PATH}"
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/bharatsoni/.oh-my-zsh
 
 #Syntax Highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Power level configs
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
@@ -19,7 +21,7 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
 POWERLEVEL9K_STATUS_VERBOSE=false
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status os_icon load dir vcs)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_music custom_js custom_react dir vcs status)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(load battery)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(load anaconda)
 POWERLEVEL9K_SHOW_CHANGESET=true
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
 
@@ -43,6 +45,8 @@ POWERLEVEL9K_CUSTOM_MUSIC_BACKGROUND="magenta"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
+#ZSH_THEME="powerlevel9k/powerlevel9k"
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -86,7 +90,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions sublime)
+plugins=(git zsh-autosuggestions sublime zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,7 +102,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=8
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -131,7 +135,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=8
 # source $HOME/.zshenv
 
 export PATH="/usr/local/opt/openssl/bin:$PATH"
-source  ~/powerlevel9k/powerlevel9k.zsh-theme
+#source  ~/powerlevel9k/powerlevel9k.zsh-theme
 
 # Command History for Auto-complete
 # Lines configured by zsh-newuser-install
@@ -153,3 +157,21 @@ zstyle :compinstall filename '/Users/bharatsoni/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/bharatsoni/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/bharatsoni/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/bharatsoni/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/bharatsoni/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+

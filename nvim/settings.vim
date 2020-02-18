@@ -117,10 +117,28 @@ set foldlevelstart=99
 " General keymaps and custom commands {{{
 command! CDhere call ChangeCurrDir()
 
+" Open Explore {{{
+vnoremap <leader>, :Explore<cr>
+nnoremap <leader>, :Explore<cr>
+" }}}
+
+" Custom keymaps {{{ 
+vnoremap <leader>k :w<cr>
+nnoremap <leader>k :w<cr>
+
+vnoremap <leader>n :q<cr>
+nnoremap <leader>n :q<cr>
+
+vnoremap <leader>q :q!<cr>
+nnoremap <leader>q :q!<cr>
+
+vnoremap <leader>m :BD<cr>
+nnoremap <leader>m :BD<cr>
+" }}}
 
 " Close window or delete buffer
 "noremap <silent> <leader>q :call CloseWindowOrKillBuffer()<CR>
-noremap <silent> <leader>q <C-W>c
+" noremap <silent> <leader>q <C-W>c
 " noremap <silent> <leader>dd :bdelete<CR>
 
 " Duplicate current line
@@ -216,9 +234,10 @@ autocmd BufReadPost *
 " Colorscheme {{{
 " source ~/.config/nvim/fixcolors.vim
 
+
 " ***********************************************
 let g:seoul256_background = 235
-let g:tender_airline = 1
+" let g:tender_airline = 1
 let g:wwdc16_term_italics = 1
 let g:wwdc16_term_trans_bg = 1
 let g:gruvbox_italic = 1
@@ -228,8 +247,8 @@ let g:neodark#terminal_transparent = 1
 let g:quantum_black = 1
 let g:quantum_italics = 1
 let g:spacegray_italicize_comments = 1
-let g:airline_theme = 'hybrid'
-" let g:airline_theme = 'cosmic_latte_dark'
+" let g:airline_theme = 'hybrid'
+let g:airline_theme = 'distinguished'
 " let g:airline_theme = 'distinguished'
 " let g:airline_theme = 'deep_space'
 let g:one_allow_italics = 1
@@ -242,6 +261,7 @@ let g:hybrid_transparent_background = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 set termguicolors
+
 
 " colorscheme hybrid_material
 " colorscheme dracula
@@ -351,7 +371,7 @@ let g:startify_list_order = [
   \ ['Bookmarks'],
   \ 'bookmarks',
   \ ]
-let g:startify_bookmarks =[{ 'man': '~/Documents/untangle/manufacturing-project-v1' }, { 'nv': '~/.config/nvim/' }, { 'z': '~/.zshrc' }]
+let g:startify_bookmarks =[{ 'con': '~/Documents/visa/consumer-app/consumer' }, { 'rxo': '~/Documents/visa/checkout-widget/rxo' }, { 'nv': '~/.config/nvim/' }, { 'z': '~/.zshrc' }]
 " let g:startify_custom_indices = ['M', 'N', 'Z']
 let g:startify_commands = [{ 'pu': ':PlugUpdate' }, { 'pi': ':PlugInstall' }, { 'pc': ':PlugClean' }]
 let g:startify_session_before_save = [
@@ -383,7 +403,7 @@ hi! link StartifyBracket StartifyPath
 hi! link StartifyNumber Title
 
 autocmd User Startified setlocal cursorline
-" nnoremap <M-F1> :Startify<CR>
+nnoremap <C-S> :Startify<CR>
 
 " mhinz/vim-grepper
 let g:grepper = {}
@@ -540,6 +560,10 @@ let g:ctrlp_mruf_save_on_update = 0
 let g:ctrlp_mruf_relative = 0
 let g:ctrlp_max_files = 0
 
+let g:ctrlp_prompt_mappings = {
+    \ 'PrtInsert("c")':       ['<c-v>', '<insert>'],
+    \ }
+
 nnoremap <C-p> :CtrlP<CR>
 nnoremap <C-P> :CtrlPLine<CR>
 
@@ -601,50 +625,64 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_color_change_percent = 3
 
 " vim-airline/vim-airline
+
+" Bharat Commeted this To test something
 let g:airline_powerline_fonts = 1
 let g:airline_symbols_ascii = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffers_label = 'bufs'
 let g:airline#extensions#tabline#tabs_label = 'tabs'
-let g:airline#extensions#tabline#buffer_idx_mode = 2
-" let g:airline#extensions#tabline#buffer_idx_format = {
-  " \ '0': '0 ',
-  " \ '1': '1 ',
-  " \ '2': '2 ',
-  " \ '3': '3 ',
-  " \ '4': '4 ',
-  " \ '5': '5 ',
-  " \ '6': '6 ',
-  " \ '7': '7 ',
-  " \ '8': '8 ',
-  " \ '9': '9 '
-" \}
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>- <Plug>AirlineSelectPrevTab
-nmap <leader>+ <Plug>AirlineSelectNextTab
-nmap <leader>b <Plug>XTablineSelectBuffer
-nmap <leader>tr <Plug>XTablineReopen
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#show_buffers = 1
 
+let g:airline#extensions#bufferline#enabled = 1
+
+
+let g:airline#extensions#tabline#buffer_idx_format = { 
+  \ '0': '0 ',
+  \ '1': '1 ',
+  \ '2': '2 ',
+  \ '3': '3 ',
+  \ '4': '4 ',
+  \ '5': '5 ',
+  \ '6': '6 ',
+  \ '7': '7 ',
+  \ '8': '8 ',
+  \ '9': '9 '
+\}
+
+
+" Bharat Commeted this To test something
+" nmap <leader>1 <Plug>AirlineSelectTab1
+" nmap <leader>2 <Plug>AirlineSelectTab2
+" nmap <leader>3 <Plug>AirlineSelectTab3
+" nmap <leader>4 <Plug>AirlineSelectTab4
+" nmap <leader>5 <Plug>AirlineSelectTab5
+" nmap <leader>6 <Plug>AirlineSelectTab6
+" nmap <leader>7 <Plug>AirlineSelectTab7
+" nmap <leader>8 <Plug>AirlineSelectTab8
+" nmap <leader>9 <Plug>AirlineSelectTab9
+" nmap <leader>- <Plug>AirlineSelectPrevTab
+" nmap <leader>+ <Plug>AirlineSelectNextTab
+" nmap <leader>b <Plug>XTablineSelectBuffer
+" nmap <leader>tr <Plug>XTablineReopen
+
+
+" Bharat Commeted this To test something
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#buffer_nr_format = '%s?'
-let g:airline#extensions#tabline#fnamecollapse = 1
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#fnamecollapse = 0
+" let g:airline#extensions#tabline#left_sep = ''
+" let g:airline#extensions#tabline#left_alt_sep = ''
+" let g:airline#extensions#tabline#right_sep = ''
+" let g:airline#extensions#tabline#right_alt_sep = ''
+" let g:airline#extensions#tabline#show_close_button = 0
+" let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#hunks#hunk_symbols = ['+', '±', '-']
+" let g:airline#extensions#hunks#hunk_symbols = ['+', '±', '-']
+
+" let g:airline_section_c = '%{FilenameOrTerm()}'
 
 " let g:airline#extensions#tabline#show_tab_nr = 1
 " let g:airline#extensions#tabline#tab_nr_type = 1
@@ -669,7 +707,8 @@ let g:airline#extensions#hunks#hunk_symbols = ['+', '±', '-']
 " let g:airline_symbols.notexists = ''
 " let g:airline_symbols.whitespace = '﬍'
 
-let g:airline_section_c = '%{FilenameOrTerm()}'
+" Bharat Commeted this To test something
+" let g:airline_section_c = '%{FilenameOrTerm()}'
 
 function! FilenameOrTerm()
   return exists('b:term_title') ? b:term_title : expand('%:t')
@@ -719,6 +758,9 @@ let g:javascript_plugin_ngdoc = 1
 
 let g:molokai_original = 0
 colorscheme molokai
+
+" Change serach colors
+hi Search guibg=DarkOrchid2 guifg=GhostWhite
 
 " syntax enable
 " set background=dark

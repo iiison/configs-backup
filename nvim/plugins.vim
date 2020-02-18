@@ -15,7 +15,7 @@ Plug 'tpope/vim-fugitive'
 
 " Editing
 Plug 'heavenshell/vim-jsdoc'
-" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 " Plug 'scrooloose/nerdcommenter'
@@ -51,7 +51,7 @@ Plug 'eugen0329/vim-esearch'
 " Information
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 " **************************************************************************************************
 

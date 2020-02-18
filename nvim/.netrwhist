@@ -1,4 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/bharat/Documents/redmart-repo/partner-portal/components/contacts'
-let g:netrw_dirhist_2='/Users/bharat/Documents/redmart-repo/partner-portal'
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/Users/bhsoni'
+let g:netrw_dirhist_7='/Users/bhsoni/.config'
+let g:netrw_dirhist_6='/Users/bhsoni/.config/nvim'
+let g:netrw_dirhist_5='/Users/bhsoni/Documents/visa/consumer-app/consumer/node_modules/@visa/cookie'
+let g:netrw_dirhist_4='/Users/bhsoni/Documents/visa/consumer-app/consumer'
+let g:netrw_dirhist_3='/Users/bhsoni/Documents/visa/consumer-app'
+let g:netrw_dirhist_2='/Users/bhsoni/Documents/visa/consumer-app/consumer/node_modules/cookie'
+let g:netrw_dirhist_1='/Users/bhsoni/Documents/visa/consumer-app/consumer'
+let g:netrw_dirhist_0='/Users/bhsoni/Documents/visa/consumer-app/consumer/node_modules'
+let g:netrw_dirhist_9='/Users/bhsoni/Documents/visa/consumer-app/consumer/node_modules/@visa'

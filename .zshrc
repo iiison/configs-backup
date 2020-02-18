@@ -226,6 +226,7 @@ export LANG=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias lc='colorls -lA --sd'
 alias dsfs='cd ~/Documents/personal/dsfs/ && conda activate dsfs'
+alias gbc="git branch | grep '^\*' | cut -d' ' -f2 | pbcopy"
 
 # User colors for LS
 # source $(dirname $(gem which colorls))/tab_complete.sh

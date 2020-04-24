@@ -492,38 +492,38 @@ nnoremap <leader>md :LivedownToggle<CR>
 " }}}
 
 
-" Autocomplete {{{
-" Shougo/deoplete.nvim
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 1
+" " Autocomplete {{{
+" " Shougo/deoplete.nvim
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_ignore_case = 1
 
-function! s:check_backspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+" function! s:check_backspace() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~ '\s'
+" endfunction
 
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> deoplete#smart_close_popup()."\<C-h>"
 
-call deoplete#custom#source('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
+" call deoplete#custom#source('_', 'matchers', ['matcher_length', 'matcher_full_fuzzy'])
 
-" carlitux/deoplete-ternjs
+" " carlitux/deoplete-ternjs
 
-" ternjs/tern_for_vim
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
+" " ternjs/tern_for_vim
+" let g:tern#command = ['tern']
+" let g:tern#arguments = ['--persistent']
 
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_camel_case = 1
-let g:deoplete#enable_refresh_always = 1
-let g:deoplete#max_abbr_width = 0
-let g:deoplete#max_menu_width = 0
-let g:deoplete#omni#input_patterns = get(g:, 'deoplete#omni#input_patterns',{})
-let g:tern_request_timeout = 1
-let g:tern_request_timeout = 6000
-" }}}
+" let g:deoplete#enable_ignore_case = 1
+" let g:deoplete#enable_smart_case = 1
+" let g:deoplete#enable_camel_case = 1
+" let g:deoplete#enable_refresh_always = 1
+" let g:deoplete#max_abbr_width = 0
+" let g:deoplete#max_menu_width = 0
+" let g:deoplete#omni#input_patterns = get(g:, 'deoplete#omni#input_patterns',{})
+" let g:tern_request_timeout = 1
+" let g:tern_request_timeout = 6000
+" " }}}
 
 " Linting {{{
 " " w0rp/ale

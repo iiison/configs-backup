@@ -27,10 +27,10 @@ Plug 'mattn/emmet-vim'
 " **************************************************************************************************
 
 " Autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install && npm install -g tern' }
-Plug 'ternjs/tern_for_vim', {'for': ['javascript', 'javascript.jsx',  'html', 'css' ]}
-
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install && npm install -g tern' }
+" Plug 'ternjs/tern_for_vim', {'for': ['javascript', 'javascript.jsx',  'html', 'css' ]}
+Plug 'zxqfl/tabnine-vim'
 Plug 'SirVer/ultisnips'
 " **************************************************************************************************
 

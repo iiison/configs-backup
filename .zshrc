@@ -1,8 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# tmux asked to enable 256 colors
+export TERM=xterm-256color
+# set -g default-terminal "screen-256color"
+
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/bhsoni/.oh-my-zsh"
+export ZSH="/Users/bharatsoni/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -68,7 +72,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+# plugins=(git, zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,7 +107,7 @@ source $ZSH/oh-my-zsh.sh
 #Anaconda Path:
 PATH="/opt/anaconda3/bin:${PATH}"
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/bhsoni/.oh-my-zsh
+export ZSH=/Users/bharatsoni/.oh-my-zsh
 
 #Syntax Highlighting
 #source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -189,7 +193,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions sublime zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions sublime zsh-syntax-highlighting tmux tmuxinator)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -253,7 +257,7 @@ setopt SHARE_HISTORY
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/Users/bhsoni/.zshrc'
+zstyle :compinstall filename '/Users/bharatsoni/.zshrc'
 
 autoload -Uz compinit
 compinit
@@ -276,9 +280,7 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 
-source /Users/bhsoni/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export NODE_TLS_REJECT_UNAUTHORIZED='0'
-export NODE_EXTRA_CA_CERTS=$HOME/.dotfiles/visa.ca-bundle.crt
+# source /Users/bharatsoni/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

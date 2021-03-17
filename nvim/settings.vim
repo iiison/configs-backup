@@ -102,7 +102,12 @@ set nocursorcolumn
 set nocursorline
 set number
 set showmatch
+
 if ($TERMINOLOGY != 1)
+  set termguicolors
+endif
+
+if (has("termguicolors"))
   set termguicolors
 endif
 " }}}
@@ -267,14 +272,25 @@ let g:airline_theme = 'distinguished'
 let g:one_allow_italics = 1
 " ***********************************************
 
+syntax enable
 set background=dark
+set t_Co=256
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 let g:hybrid_transparent_background = 1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-set termguicolors
+" set termguicolors
 
+
+colorscheme night-owl
+let g:lightline = { 'colorscheme': 'nightowl'  }
+
+" Enable italics {{{
+" call s:h("jsFuncArgRest", { "format": "italic" })                                 
+" call s:h("jsFuncArgs", { "format": "italic" })
+" call s:h("jsDocTags", { "format": "italic" })
+" }}}
 
 " colorscheme hybrid_material
 " colorscheme dracula
@@ -489,6 +505,9 @@ let g:livedown_port = 8999
 let g:livedown_open = 0
 let g:livedown_browser = "chrome"
 nnoremap <leader>md :LivedownToggle<CR>
+
+" ThePrimeagen/vim-apm
+" set kscb
 " }}}
 
 
@@ -769,15 +788,17 @@ let g:javascript_plugin_ngdoc = 1
 " colorscheme hybrid_material
 " colorscheme dracula
 
-let g:molokai_original = 0
-colorscheme molokai
+" let g:molokai_original = 0
+" colorscheme molokai
 
 " Change serach colors
 hi Search guibg=DarkOrchid2 guifg=GhostWhite
 
-" syntax enable
 " set background=dark
 " colorscheme solarized
-
 " }}}
+" }}}
+
+""" Hide Tmux status bar if vim is opened {{{
+" autocmd VimEnter,VimLeave * silent !tmux set status
 " }}}

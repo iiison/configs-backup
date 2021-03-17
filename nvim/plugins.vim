@@ -11,6 +11,7 @@ Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-grepper'
 Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-fugitive'
+Plug 'vimwiki/vimwiki'
 " **************************************************************************************************
 
 " Editing
@@ -24,6 +25,7 @@ Plug 'tpope/vim-commentary'
 Plug 'shime/vim-livedown'
 Plug 'tpope/vim-repeat'
 Plug 'mattn/emmet-vim'
+Plug 'ThePrimeagen/vim-apm'
 " **************************************************************************************************
 
 " Autocomplete
@@ -74,6 +76,7 @@ Plug 'tpope/vim-jdaddy'
 " **************************************************************************************************
 
 " ColorSchemes
+Plug 'haishanh/night-owl.vim'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'kaicataldo/material.vim'
 Plug 'mhartington/oceanic-next'
@@ -89,7 +92,9 @@ Plug 'tomasr/molokai'
 Plug 'altercation/vim-colors-solarized'
 " **************************************************************************************************
 
-
+" Developement Related
+Plug 'eliba2/vim-node-inspect'
+" **************************************************************************************************
 
 call plug#end()
 " **************************************************************************************************
